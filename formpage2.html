@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: rgb(115, 188, 236);
+        }
+
+        .btn>a {
+            color: antiquewhite;
+            text-decoration: none;
+        }
+    </style>
+    <title>Form Page</title>
+</head>
+
+<body>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center text-white">Create Resume</h1>
+                <div class="col-md-5 offset-md-1 mt-5">
+                    <h4 class="text-white">3. Work Experince</h4>
+                    <label class="mt-3" for="comp">Company : </label>
+                    <input type="text" class="form-control" id="comp">
+                    <label class="mt-3" for="role">Roles : </label>
+                    <input type="text" class="form-control" id="role">
+                    <label class="mt-3" for="resp">Resposibilities :</label>
+                    <input type="te" class="form-control" id="resp">
+                    <label class="mt-3" for="dur">Duration :</label>
+                    <input type="text" class="form-control" id="dur">
+
+                    <button class="btn btn-success mt-5 " onclick="saveData('Workexperience')">Done</button>
+                </div>
+
+                <div class="col-md-5 offset-md-1 mt-5">
+                    <h4 class="text-white">4. Skills</h4>
+                    <label class="mt-3" value="Mondatory" for="s1">Skill 1 : </label>
+                    <input type="text" class="form-control" id="s1">
+                    <label class="mt-3" for="s2">Skill 2 : </label>
+                    <input type="text" class="form-control" id="s2">
+                    <label class="mt-3" for="s3">Skill 3 :</label>
+                    <input type="te" class="form-control" id="s3">
+                    <label class="mt-3" for="s4">Skill 4 :</label>
+                    <input type="text" class="form-control" id="s4">
+
+                    <button class="btn btn-success mt-5 " onclick="saveData('Skills')">Done</button>
+                </div>
+                <div class="offset-md-10 mt-3 col-md-2">
+                    <button class="btn btn-success" onclick="next()"><a>Create</a> </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+<script>
+
+    var comp = document.getElementById("comp");
+    var role = document.getElementById("role");
+    var resp = document.getElementById("resp");
+    var dur = document.getElementById("dur");
+    function next() {
+        if (comp.value == "" || role.value == "" || resp.value == "" || dur.value == "") {
+            alert("Fill all your information correctly")
+        }
+    }
+    
+    function saveData(type) {
+        var data = {};
+        if (type === 'Workexperience') {
+            data.comp = document.getElementById("comp").value;
+            data.role = document.getElementById("role").value;
+            data.resp = document.getElementById("resp").value;
+            data.dur = document.getElementById("dur").value;
+        } else if (type === 'Skills') {
+            data.s1 = document.getElementById("s1").value;
+            data.s2 = document.getElementById("s2").value;
+            data.s3 = document.getElementById("s3").value;
+            data.s4 = document.getElementById("s4").value;
+        }
+        console.log(data);
+        localStorage.setItem('resumeData',JSON.stringify(data));
+
+        window.location.href='./formpage.html'
+        
+    }
+</script>
+
+</html>
